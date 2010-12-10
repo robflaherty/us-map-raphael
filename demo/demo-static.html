@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Static United States map made with Raphael</title>   
+</head>
+<body>
+  
+<div id="container"></div>
+<!-- /container -->  
+  
+<script src="raphael-min.js"></script>
+<script src="../us-map-svg.js"></script>
+<script>
+  window.onload = function () {
+    var R = Raphael("container", 1000, 900),
+      attr = {
+      "fill": "#d3d3d3",
+      "stroke": "#fff",
+      "stroke-opacity": "1",
+      "stroke-linejoin": "round",
+      "stroke-miterlimit": "4",
+      "stroke-width": "0.75",
+      "stroke-dasharray": "none"
+    };
+    
+    //Draw Map
+    for (var state in usMap) {
+      R.path(usMap[state]).attr(attr);      
+    }
+        
+  };
+</script>
+</body>
+</html>
