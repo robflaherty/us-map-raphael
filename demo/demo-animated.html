@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <title>Animated United States map made with Raphael</title>   
+
+  <style>
+    #container {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+    }
+  </style>
+
 </head>
 <body>
   
@@ -13,7 +22,13 @@
 <script src="../us-map-svg.js"></script>
 <script>
   window.onload = function () {
-    var R = Raphael("container", 1000, 900),
+
+    // important - we need the original SVG's width and height
+    var svgWidth = 959;
+    var svgHeight = 593;
+
+    // set the Raphael paper to occupy 100% of its container dimensions
+    var R = Raphael("container", '100%', '100%'),
       attr = {
       "fill": "#d3d3d3",
       "stroke": "#fff",
@@ -24,7 +39,10 @@
       "stroke-dasharray": "none"
     },
     usRaphael = {};
-    
+
+    // the following line makes the Raphael paper fill its container
+    R.setViewBox(0, 0, svgWidth, svgHeight, true);
+
     //Draw Map and store Raphael paths
     for (var state in usMap) {
       usRaphael[state] = R.path(usMap[state]).attr(attr);
